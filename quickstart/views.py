@@ -1,8 +1,9 @@
 from django.shortcuts import render
+from quickstart.serializers import *
 
 # Create your views here.
 from django.contrib.auth.models import User, Group
-from rest_framework import viewsets
+from rest_framework import viewsets,generics, status
 from rest_framework import permissions
 from quickstart.serializers import UserSerializer, GroupSerializer
 
@@ -23,3 +24,6 @@ class GroupViewSet(viewsets.ModelViewSet):
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
     permission_classes = [permissions.IsAuthenticated]
+
+class PredictViewSet(generics.CreateAPIView):
+    serializer_class = PredictSerializer
